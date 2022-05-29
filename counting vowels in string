@@ -1,0 +1,9 @@
+string_1 = input ("Enter a string ")
+length_string_1 = len(string_1)
+wovel = "aeiou"
+counter_wov = 0
+print (string_1)
+for x in string_1:
+  if x in wovel:
+    counter_wov += 1 
+print ("No of wovel in string are:", counter_wov)
