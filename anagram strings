@@ -1,0 +1,5 @@
+input1= input(" Enter the first string")
+input2 = input ("Enter the second string")
+
+print ("The strings are anagram " if (sorted(input1)== sorted(input2)) else "The strings are not anagram")
+
