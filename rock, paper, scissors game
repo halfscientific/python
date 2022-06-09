@@ -1,0 +1,53 @@
+import random, os
+
+def who_wins (comp_inp, player_inp):
+  if player_inp == 1:
+    if comp_inp == 1:
+      win = 2
+    elif comp_inp == 2:
+      win = 0
+    elif comp_inp == 3:
+      win = 1
+  elif player_inp == 2:
+    if comp_inp == 1:
+      win = 1
+    elif comp_inp == 2:
+      win = 2
+    elif comp_inp == 3:
+      win = 0
+  elif player_inp == 3:
+    if comp_inp == 1:
+      win = 0
+    elif comp_inp == 2:
+      win = 1
+    elif comp_inp == 3:
+      win = 2
+  else:
+    win = 3
+  return win
+player_wins = 0
+comp_wins = 0
+ties = 0
+while True:
+  comp_inp = random.randint(1,3)
+  print("Rock: 1 , Paper: 2, scissors: 3 ")
+  player_inp = int(input())
+  win = who_wins(comp_inp, player_inp)
+  os.system('clear')
+  if win == 1:
+    player_wins += 1
+  elif win == 0:
+    comp_wins += 1
+  elif win == 2:
+    ties += 1
+  else:
+    print("It seems you chosen something which is in parallel universe")
+    print ()
+    print("We only play rock, paper and scissors here")
+    print ()
+    
+  print("Scorecard: ")
+  print()
+  print ("{:<15} {:<15} {:<10}".format('Harshal:','Player_1: ','Ties:'))
+  print ("{:<15} {:<15} {:<10}".format(comp_wins,player_wins,ties))
+  print()
