@@ -1,0 +1,38 @@
+import random
+
+def randstring_gen(list_length_p):
+  list_rand_int = []
+  for i in range(0, list_length_p):
+    list_rand_int.append(random.randint(0, list_length_p))
+  return list_rand_int
+
+
+def get_mid_index (list_p):
+  if (len(list_p)%2 == 0):
+    mid_index_p = (len(list_p)//2)
+  else:
+    mid_index_p = (len(list_p)//2) 
+  return mid_index_p
+  
+def binary_search(sorted_list_p, query_num_p): 
+  midpoint_index = get_mid_index(sorted_list_p)
+  if len(sorted_list_p)==1:
+    if sorted_list_p[0] == query_num_p:
+      print("Number present in list")
+    else:
+      print("Number is not there in the list")
+  elif (query_num_p >= sorted_list_p[midpoint_index]):
+    new_list = sorted_list_p[midpoint_index:]
+    binary_search(new_list,query_num_p)
+  else:
+    new_list = sorted_list_p[:midpoint_index]
+    binary_search(new_list,query_num_p)
+  
+
+
+input_list = randstring_gen(20)
+sorted_list = sorted(input_list)
+
+query_num = int(input("Enter the number to search for"))
+binary_search(sorted_list,query_num)
+print(input_list)
