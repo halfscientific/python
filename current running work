@@ -1,0 +1,76 @@
+# import turtle package
+import random, turtle, time
+
+
+
+def print_matrix (game_matrix):
+ 
+  # create screen object
+  sc = turtle.Screen()
+  sc.tracer(15)
+  # create turtle object
+  pen = turtle.Turtle()
+ 
+  # method to draw square
+  def draw():
+  
+    for i in range(4):
+  	  pen.forward(30)
+  	  pen.left(90)
+  
+    pen.forward(30)
+  
+  # Driver Code
+  if __name__ == "__main__" :
+  	
+  	# set screen
+  	sc.setup(600, 600)
+  	
+  	# set turtle object speed
+  	pen.speed(000)
+  
+  for i in range(len(game_matrix)):
+    pen.hideturtle() 
+    pen.up()
+    pen.setpos(-100, (250-30 * i))
+    pen.down()
+    for j in range(len(game_matrix)):
+      if (game_matrix[i][j]) == 0:
+        col ='white'
+      else:
+        col ='black'
+      pen.fillcolor(col)
+      pen.begin_fill()
+      draw()
+      pen.end_fill()
+      pen.hideturtle()
+  	
+  	# This code is contributed by Deepanshu Rustagi.
+  
+
+
+
+def initial_status (matrix_size ):
+  game_matrix_01 = []
+  for falsecounter_outer in range(0, int(matrix_size)):
+    game_matrix_inner = []
+    for falsecounter_inner in range (0, int(matrix_size)):
+      game_matrix_inner.append(random.randint(0,1))  
+    #print(game_matrix_inner, end = '')
+    game_matrix_01.append(game_matrix_inner)
+  return game_matrix_01
+
+
+
+game_matrix =initial_status(6 )
+print(game_matrix)
+print_matrix (game_matrix)
+time.sleep(8)
+game_matrix =initial_status(6 )
+print(game_matrix)
+print_matrix (game_matrix)
+
+
+
+
+
