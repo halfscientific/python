@@ -1,0 +1,75 @@
+# import turtle package
+import random, time, os, copy
+
+
+def initial_status (matrix_size ):
+  os.system('clear')
+  game_matrix_01 = []
+  for falsecounter_outer in range(0, int(matrix_size)):
+    game_matrix_inner = []
+    for falsecounter_inner in range (0, int(matrix_size)):
+      game_matrix_inner.append(random.randint(0,1))  
+      print(game_matrix_inner[falsecounter_inner], end = ' ')
+    game_matrix_01.append(game_matrix_inner)
+    print()
+  return game_matrix_01
+
+def sum_for_status_update(game_matrix,falsecounter_outer,falsecounter_inner):
+  sum_of_neighbours = 0
+  for i in range(-1,1):
+    for j in range (-1,1):
+      try: 
+        sum_of_neighbours += game_matrix[falsecounter_outer + i][falsecounter_inner+j]
+      except IndexError:
+        continue
+  return sum_of_neighbours
+
+
+def next_step_matrix (game_matrix):
+  game_matrix_copy = copy.deepcopy(game_matrix)
+
+  for falsecounter_outer in range(len(game_matrix)):
+    for falsecounter_inner in range(len(game_matrix)):
+      if game_matrix_copy[falsecounter_outer][falsecounter_inner] ==1:
+        sum_for_status_xy = sum_for_status_update(game_matrix,falsecounter_outer,falsecounter_inner)
+        if sum_for_status_xy == 2 or sum_for_status_xy == 3:
+          game_matrix_copy[falsecounter_outer][falsecounter_inner] = 1
+        else:
+          game_matrix_copy[falsecounter_outer][falsecounter_inner] = 0
+      else:
+        sum_for_status_xy = sum_for_status_update(game_matrix,falsecounter_outer,falsecounter_inner)
+        if sum_for_status_xy >=2:
+          game_matrix_copy[falsecounter_outer][falsecounter_inner] = 1
+        else:
+          game_matrix_copy[falsecounter_outer][falsecounter_inner] = 0
+
+  return game_matrix_copy
+        
+        
+def print_matrix (game_matrix):
+  for falsecounter_outer in range(len(game_matrix)):
+    for falsecounter_inner in range(len(game_matrix)):
+      print(game_matrix[falsecounter_outer][falsecounter_inner],end= " ")
+    print()
+  
+  
+
+game_matrix =initial_status(6 )
+while True:
+  try:
+    game_matrix = next_step_matrix(game_matrix)
+    time.sleep(1)
+    os.system('clear')
+    print_matrix(game_matrix)
+  except KeyboardInterrupt:
+    break
+    
+
+
+
+
+
+
+
+
+
